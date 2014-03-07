@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Expenses Sheet</title>
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+    <script src="scripts/default.js"></script>
+</head>
+<body>
+<h1>Expenses Application</h1>
+
+<div class="total">
+	Billing Amount <strong>$<span data-bind="text: total"></span></strong>	
+</div>
+
+<div class="row-title">
+	<div class="col">
+		Description 
+	</div>
+	<div class="col-time">
+		Time
+	</div>
+	<div class="clear"></div>
+</div><!--end of row title -->
+<div data-bind="foreach: expenses">
+	<div class="row" >
+		<div class="col">
+			<span data-bind="text: _desc"></span>
+		</div>
+		<div class="col-time">
+			<span data-bind="text: _time"></span>
+		</div>
+		<div class="clear"></div>
+	</div><!--end of row -->
+</div><!--end of foreach: expenses -->
+
+<h1>Add Expense</h1>
+<input type="text" id="desc" placeholder="Description" />
+<input type="text" id="time" placeholder="Time Spent" />
+<input type="button" data-bind="click: addExpense" value="Add" />
+</body>
+</html>
