@@ -5,8 +5,8 @@ var express = require('express'),
 var db = [];
 
 var Expense = function(name, email){
-  this._desc = name;
-  this._time = email;
+  this.desc = name;
+  this.time = email;
 }
 
 //initialize db with some expenses
@@ -23,7 +23,7 @@ app.get("/api/expenses/", function(req, res){
 
 app.post("/api/expenses/", function(req, res){
   console.log('req', req.body);
-  db.push(new Expense(req.body._desc, req.body._time));
+  db.push(new Expense(req.body.desc, req.body.time));
   res.json(200, db[db.length-1]);
   res.end();
   

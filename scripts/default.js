@@ -1,8 +1,8 @@
 $(function(){
 
     var Expense = function(data){
-        this._desc = ko.observable(data._desc);
-        this._time = ko.observable(data._time);
+        this.desc = ko.observable(data.desc);
+        this.time = ko.observable(data.time);
     };
 
     Expense.prototype.addToDB = function(){
@@ -11,16 +11,16 @@ $(function(){
             url: "/api/expenses/",
             dataType: "json", 
             data: {
-                _desc : this._desc(),
-                _time : this._time()
+                desc : this.desc(),
+                time : this.time()
             }
         });
 
         request.done(function(response){
             console.log(response);
             viewModel.expenses.push(new Expense({
-                _desc: response._desc,
-                _time: response._time
+                desc: response.desc,
+                time: response.time
             }));
         });
     }
@@ -33,15 +33,15 @@ $(function(){
             var total = 0;
             var hourly_rate = 100;
             for(var p=0; p < self.expenses().length; p++){
-                total += parseFloat(self.expenses()[p]._time());
+                total += parseFloat(self.expenses()[p].time());
             }
             return (total*hourly_rate).toFixed(2);
         })
 
         self.addExpense = function(){
             var expense = new Expense({
-                _desc: $('#desc').val(),
-                _time: $('#time').val()
+                desc: $('#desc').val(),
+                time: $('#time').val()
             });
 
             expense.addToDB();
@@ -75,8 +75,8 @@ $(function(){
 
 	//insert some fake users for now
 	viewModel.expenses.push(new Expense({
-		_desc: "phone call",
-        _time: "0.5",
+		desc: "phone call",
+        time: "0.5",
 	}));
 
 	ko.applyBindings(viewModel);
