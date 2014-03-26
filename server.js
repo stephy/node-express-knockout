@@ -1,12 +1,16 @@
 var express = require('express'),
   app = express();
 
-
+/*
+	Fake DB
+	arrays used as db just for purposes of demonstration
+	real dbs need to be used in real projects :)
+*/
 var db = [];
 
-var Expense = function(name, email){
+var Expense = function(name, time){
   this.desc = name;
-  this.time = email;
+  this.time = time;
 }
 
 //initialize db with some expenses
